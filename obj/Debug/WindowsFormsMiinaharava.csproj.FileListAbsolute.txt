@@ -1,0 +1,9 @@
+C:\Users\Andreas\source\repos\WindowsForms\WindowsFormsMiinaharava\bin\Debug\WindowsFormsMiinaharava.exe.config
+C:\Users\Andreas\source\repos\WindowsForms\WindowsFormsMiinaharava\bin\Debug\WindowsFormsMiinaharava.exe
+C:\Users\Andreas\source\repos\WindowsForms\WindowsFormsMiinaharava\bin\Debug\WindowsFormsMiinaharava.pdb
+C:\Users\Andreas\source\repos\WindowsForms\WindowsFormsMiinaharava\obj\Debug\WindowsFormsMiinaharava.csprojAssemblyReference.cache
+C:\Users\Andreas\source\repos\WindowsForms\WindowsFormsMiinaharava\obj\Debug\WindowsFormsMiinaharava.Properties.Resources.resources
+C:\Users\Andreas\source\repos\WindowsForms\WindowsFormsMiinaharava\obj\Debug\WindowsFormsMiinaharava.csproj.GenerateResource.cache
+C:\Users\Andreas\source\repos\WindowsForms\WindowsFormsMiinaharava\obj\Debug\WindowsFormsMiinaharava.exe
+C:\Users\Andreas\source\repos\WindowsForms\WindowsFormsMiinaharava\obj\Debug\WindowsFormsMiinaharava.pdb
+C:\Users\Andreas\source\repos\WindowsForms\WindowsFormsMiinaharava\obj\Debug\WindowsFormsMiinaharava.Miinaharava.resources
