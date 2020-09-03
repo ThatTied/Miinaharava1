@@ -24,8 +24,8 @@ namespace WindowsFormsMiinaharava
         public int RndMiinamaara; //Miinojen määrä miinojen istutusta varten
         public int MaxMiinat; // Max miinat per kenttä
         public int RuutuKoko = 26; // Ruutujen säädeltävä koko
-        public Image Miina = WindowsFormsMiinaharava.Properties.Resources.pienimiina;
-        public Image Lipputanko = WindowsFormsMiinaharava.Properties.Resources.lippu;
+        public Image Miina = WindowsFormsMiinaharava.Properties.Resources.pienimiina; //testi
+        public Image Lipputanko = WindowsFormsMiinaharava.Properties.Resources.lippu; //testi2
         public bool IstutaMiina(ref Random Rand)
         {
             int chance = Rand.Next(RndMiinamaara);
