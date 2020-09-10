@@ -7,3 +7,12 @@ C:\Users\Andreas\source\repos\WindowsForms\WindowsFormsMiinaharava\obj\Debug\Win
 C:\Users\Andreas\source\repos\WindowsForms\WindowsFormsMiinaharava\obj\Debug\WindowsFormsMiinaharava.exe
 C:\Users\Andreas\source\repos\WindowsForms\WindowsFormsMiinaharava\obj\Debug\WindowsFormsMiinaharava.pdb
 C:\Users\Andreas\source\repos\WindowsForms\WindowsFormsMiinaharava\obj\Debug\WindowsFormsMiinaharava.Miinaharava.resources
+C:\Users\Andreas\source\repos\WindowsForms\Miinaharava1\bin\Debug\WindowsFormsMiinaharava.exe.config
+C:\Users\Andreas\source\repos\WindowsForms\Miinaharava1\bin\Debug\WindowsFormsMiinaharava.exe
+C:\Users\Andreas\source\repos\WindowsForms\Miinaharava1\bin\Debug\WindowsFormsMiinaharava.pdb
+C:\Users\Andreas\source\repos\WindowsForms\Miinaharava1\obj\Debug\WindowsFormsMiinaharava.csprojAssemblyReference.cache
+C:\Users\Andreas\source\repos\WindowsForms\Miinaharava1\obj\Debug\WindowsFormsMiinaharava.Miinaharava.resources
+C:\Users\Andreas\source\repos\WindowsForms\Miinaharava1\obj\Debug\WindowsFormsMiinaharava.Properties.Resources.resources
+C:\Users\Andreas\source\repos\WindowsForms\Miinaharava1\obj\Debug\WindowsFormsMiinaharava.csproj.GenerateResource.cache
+C:\Users\Andreas\source\repos\WindowsForms\Miinaharava1\obj\Debug\WindowsFormsMiinaharava.exe
+C:\Users\Andreas\source\repos\WindowsForms\Miinaharava1\obj\Debug\WindowsFormsMiinaharava.pdb

@@ -17,7 +17,10 @@ namespace WindowsFormsMiinaharava
             InitializeComponent();
             miinaTextBox.Hide();
         }
-        public List<int> Tile;
+
+        List<string> Minefield = new List<string>(); // Kaikki ruudut
+        List<string> Miinat = new List<string>(); // Ruudut, jossa on miinoja
+
         Button ruutu;
         public Random Rnd = new Random();
         public int Miinamaara = 0; // Miinojen määrä
@@ -37,7 +40,7 @@ namespace WindowsFormsMiinaharava
             else
             {
                 return false;
-            } 
+            }
         }
         public void FormKoko(int x, int y) // Säädeltävä Formin koko X ja Y -arvoilla
         {
@@ -46,6 +49,12 @@ namespace WindowsFormsMiinaharava
             KokoX = 5 + (x * RuutuKoko) + (x * 2) + 20;
             KokoY = 35 + (y * RuutuKoko) + (y * 2) + 40;
             this.Size = new Size(KokoX, KokoY);
+        }
+        public int NaapuriRuudut(string IsantaRuutu) // KESKENERÄINEN, katsotaan naapuriruudut
+        {
+            int Pommit = 0;
+            
+            return Pommit;
         }
         public void LuoKentta(int x, int y) // Luodaan miinakenttä, ruutujen määrää pystyy säätää X ja Y -arvoilla
         {
@@ -63,31 +72,43 @@ namespace WindowsFormsMiinaharava
                     ruutu.Size = new Size(RuutuKoko, RuutuKoko);
                     ruutu.Location = newLoc;
                     newLoc.Offset(0, RuutuKoko + 2);
+
+                    Minefield.Add(o + "," + i); // Ruudun koordinaatit tallennetaan sen nimeen ja lisätään listaan talteen
+                    ruutu.Name = (o + "," + i);
+                    if (IstutaMiina(ref Rnd) == true) // Miinan istutus, tilapäinen pinkki väri jotta miinat näkyy laudalla ennen painamista
+                    {
+                        ruutu.Tag = ("Miina");
+                        Miinat.Add(o + "," + i);
+                        ruutu.BackColor = System.Drawing.Color.LightPink;
+                    }
+
                     ruutu.MouseUp += (object sender, MouseEventArgs e) => { // Lisätään ruudulle MouseUp eventti jotta voidaan katsoa vasen tai oikean hiirinklikkauksia
                         Button tamaRuutu = sender as Button;
-                        bool OnPommi = IstutaMiina(ref Rnd);
-
-
-                        if (tamaRuutu.Image == Miina || tamaRuutu.BackColor == System.Drawing.Color.LightGray)
+                    if (tamaRuutu.Image == Miina || tamaRuutu.BackColor == System.Drawing.Color.Gray) // Ruutua "ei voi painaa" jos on paljastettu/miina
                         {
-                            return;
-                        }
-                        else if (e.Button == System.Windows.Forms.MouseButtons.Left && tamaRuutu.Image == Lipputanko)
-                        {
-                            tamaRuutu.Image = null;
-                        }
-                        else if (e.Button == System.Windows.Forms.MouseButtons.Right)
-                        {
-                            tamaRuutu.Image = Lipputanko;
-                        }
-                        else if (e.Button == System.Windows.Forms.MouseButtons.Left && OnPommi == true)
+                        return;
+                    }
+                    else if (e.Button == System.Windows.Forms.MouseButtons.Left && tamaRuutu.Image == Lipputanko) // Poistetaan lippu ruudusta
+                    {
+                        tamaRuutu.Image = null;
+                    }
+                    else if (e.Button == System.Windows.Forms.MouseButtons.Right) // Laitetaan lippu ruudulle
+                    {
+                        tamaRuutu.Image = Lipputanko;
+                    }
+                    else if (e.Button == System.Windows.Forms.MouseButtons.Left && tamaRuutu.Tag == "Miina") // Miina räjähti
                         {
                             tamaRuutu.Image = Miina;
                             tamaRuutu.BackColor = System.Drawing.Color.Red;
                         }
                         else
                         {
-                            tamaRuutu.BackColor = System.Drawing.Color.LightGray;
+                            tamaRuutu.BackColor = System.Drawing.Color.Gray; 
+                            tamaRuutu.Text = (NaapuriRuudut(tamaRuutu.Name)).ToString(); // Tyhjä ruutu, laitetaan numero jos naapurista löytyy miina
+                            if (tamaRuutu.Text == "0")
+                            {
+                                tamaRuutu.Text = "";
+                            }
                         }
                     };
                     Controls.Add(ruutu);
