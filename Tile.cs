@@ -13,8 +13,8 @@ public class Tile : Button
     public int ID { get; set; }
     public int X { get; set; }
     public int Y { get; set; }
+    public int NaapuriMiinat { get; set; }
     public bool IsMine { get; set; }
-    public int NaapuriPommit { get; set; }
     public bool Painettu { get; set; }
     public bool Liputettu { get; set; }
 
