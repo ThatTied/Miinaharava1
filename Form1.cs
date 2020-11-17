@@ -31,6 +31,11 @@ namespace WindowsFormsMiinaharava
         public int oikeaLippu = 0;
         public int vääräLippu = 0;
 
+        /// <summary>
+        /// Istutetaan miina jollekin ruudulle
+        /// </summary>
+        /// <param name="Rand"></param>
+        /// <returns></returns>
         public bool IstutaMiina(ref Random Rand)
         {
             int chance = Rand.Next(RndMiinamaara);
@@ -59,6 +64,12 @@ namespace WindowsFormsMiinaharava
             KokoY = 35 + (y * 26) + (y * 2) + 40;
             this.Size = new Size(KokoX, KokoY);
         }
+        /// <summary>
+        /// Katsotaan ruudun kahdeksan naapuriruudun miinamäärän, ja palautetaan # joka vastaa kuinka monta miinaa on ruudun ympärillä.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
         public int NaapuriRuudut(int x, int y) // katsotaan naapuriruudut
         {
             int Pommit = 0;
@@ -99,6 +110,9 @@ namespace WindowsFormsMiinaharava
             }
             return Pommit;
         }
+        /// <summary>
+        /// piilotetaan pelin aloitusnäkymä.
+        /// </summary>
         public void piilotaAloitus()
         {
             this.helpponappi.Hide(); // Piilotetaan aloitusruudun asiat
@@ -133,7 +147,7 @@ namespace WindowsFormsMiinaharava
                     {
                         ruutu.IsMine = true;
                         miinaRuudut.Add(ruutu);
-                        ruutu.BackColor = Color.Pink;
+                        //ruutu.BackColor = Color.Pink;
                     }
                     else
                     {
@@ -148,6 +162,11 @@ namespace WindowsFormsMiinaharava
             miinaTextBox.Show();
             miinaTextBox.Text = Convert.ToString(Miinamaara);
         }
+        /// <summary>
+        /// Helpon vaikeuden peliasetukset
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Helpponappi_Click(object sender, EventArgs e)
         {
             MaxMiinat = 10;
@@ -156,7 +175,11 @@ namespace WindowsFormsMiinaharava
             FormKoko(9, 9);
             miinaTextBox.Text = "10";
         }
-
+        /// <summary>
+        /// Keskivaikean vaikeuden peliasetukset
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Keskivaikeanappi_Click(object sender, EventArgs e)
         {
             MaxMiinat = 40;
@@ -165,7 +188,11 @@ namespace WindowsFormsMiinaharava
             FormKoko(16, 16);
             miinaTextBox.Text = "40";
         }
-
+        /// <summary>
+        /// Vaikean vaikeuden peliasetukset
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Vaikeanappi_Click(object sender, EventArgs e)
         {
             MaxMiinat = 99;
@@ -174,6 +201,11 @@ namespace WindowsFormsMiinaharava
             FormKoko(30, 16);
             miinaTextBox.Text = "99";
         }
+        /// <summary>
+        /// Ruudun tapahtumat, kun ruutua painaa.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ruutuClick(object sender, MouseEventArgs e)
         {
             // Lisätään ruudulle MouseUp eventti jotta voidaan katsoa vasen tai oikean hiirinklikkauksia
@@ -236,6 +268,7 @@ namespace WindowsFormsMiinaharava
                 if (tamaRuutu.Text == "0")
                 {
                     tamaRuutu.Text = "";
+                    tyhjäRuutu(tamaRuutu.X, tamaRuutu.Y);
                 }
             }
             CheckForWin();
@@ -274,6 +307,105 @@ namespace WindowsFormsMiinaharava
             else
             {
                 //Ei voittoa :(
+            }
+        }
+        /// <summary>
+        /// Paljastetaan useampi tyhjä ruutu, kun yhtä tyhjää ruutua painaa.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public void tyhjäRuutu(int x, int y)
+        {
+            foreach (Tile tile in Ruudut)
+            {
+                if (tile.X == (x - 1) && tile.Y == (y + 1) && tile.Painettu == false)
+                {
+                    tile.Painettu = true;
+                    tile.Text = (NaapuriRuudut(tile.X, tile.Y)).ToString();
+                    tile.BackColor = Color.LightGreen;
+                    if (tile.Text == "0")
+                    {
+                        tile.Text = "";
+                        tyhjäRuutu(tile.X, tile.Y);
+                    }
+                }
+                if (tile.X == x && tile.Y == (y + 1) && tile.Painettu == false)
+                {
+                    tile.Painettu = true;
+                    tile.Text = (NaapuriRuudut(tile.X, tile.Y)).ToString();
+                    tile.BackColor = Color.LightGreen;
+                    if (tile.Text == "0")
+                    {
+                        tile.Text = "";
+                        tyhjäRuutu(tile.X, tile.Y);
+                    }
+                }
+                if (tile.X == (x + 1) && tile.Y == (y + 1) && tile.Painettu == false) // 3x1 rivi ruudun yläpuolella
+                {
+                    tile.Painettu = true;
+                    tile.Text = (NaapuriRuudut(tile.X, tile.Y)).ToString();
+                    tile.BackColor = Color.LightGreen;
+                    if (tile.Text == "0")
+                    {
+                        tile.Text = "";
+                        tyhjäRuutu(tile.X, tile.Y);
+                    }
+                }
+                if (tile.X == (x - 1) && tile.Y == y && tile.Painettu == false)
+                {
+                    tile.Painettu = true;
+                    tile.Text = (NaapuriRuudut(tile.X, tile.Y)).ToString();
+                    tile.BackColor = Color.LightGreen;
+                    if (tile.Text == "0")
+                    {
+                        tile.Text = "";
+                        tyhjäRuutu(tile.X, tile.Y);
+                    }
+                }
+                if (tile.X == (x + 1) && tile.Y == y && tile.Painettu == false) // 2 ruutua ruudun vieressä
+                {
+                    tile.Painettu = true;
+                    tile.Text = (NaapuriRuudut(tile.X, tile.Y)).ToString();
+                    tile.BackColor = Color.LightGreen;
+                    if (tile.Text == "0")
+                    {
+                        tile.Text = "";
+                        tyhjäRuutu(tile.X, tile.Y);
+                    }
+                }
+                if (tile.X == (x - 1) && tile.Y == (y - 1) && tile.Painettu == false)
+                {
+                    tile.Painettu = true;
+                    tile.Text = (NaapuriRuudut(tile.X, tile.Y)).ToString();
+                    tile.BackColor = Color.LightGreen;
+                    if (tile.Text == "0")
+                    {
+                        tile.Text = "";
+                        tyhjäRuutu(tile.X, tile.Y);
+                    }
+                }
+                if (tile.X == x && tile.Y == (y - 1) && tile.Painettu == false)
+                {
+                    tile.Painettu = true;
+                    tile.Text = (NaapuriRuudut(tile.X, tile.Y)).ToString();
+                    tile.BackColor = Color.LightGreen;
+                    if (tile.Text == "0")
+                    {
+                        tile.Text = "";
+                        tyhjäRuutu(tile.X, tile.Y);
+                    }
+                }
+                if (tile.X == (x + 1) && tile.Y == (y - 1) && tile.Painettu == false) // 3x1 rivi ruudun alapuolella
+                {
+                    tile.Painettu = true;
+                    tile.Text = (NaapuriRuudut(tile.X, tile.Y)).ToString();
+                    tile.BackColor = Color.LightGreen;
+                    if (tile.Text == "0")
+                    {
+                        tile.Text = "";
+                        tyhjäRuutu(tile.X, tile.Y);
+                    }
+                }
             }
         }
     }
