@@ -259,6 +259,11 @@ namespace WindowsFormsMiinaharava
                     }
                 }
                 tamaRuutu.BackColor = Color.Red;
+                DialogResult ded = MessageBox.Show("Hävisit pelin!", "BOOM", MessageBoxButtons.OK);
+                if (ded == DialogResult.OK)
+                {
+                    Application.Restart();
+                }
             }
             else
             {
@@ -302,7 +307,11 @@ namespace WindowsFormsMiinaharava
                         tiili.Painettu = true;
                     }
                 }
-                MessageBox.Show("Voitit Pelin!", "Voitto");
+                DialogResult voitto = MessageBox.Show("Voitit Pelin!", "Voitto", MessageBoxButtons.OK);
+                if (voitto == DialogResult.OK)
+                {
+                    Application.Restart();
+                }
             }
             else
             {
